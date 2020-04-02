@@ -5,6 +5,10 @@ const webRoutes = require('./routes/web');
 // Express app creation
 const app = express();
 
+// Connect socket io
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 // Configurations
 const appConfig = require('./configs/app');
 
@@ -28,7 +32,22 @@ app.use('/', express.static(__dirname + '/public'));
 // Routes
 app.use('/', webRoutes);
 
+io.on('connection', (socket) => {
+  // Recibe la conexión del cliente
+  console.log('Client connected...');
+  let i = 0;
+  // Emite un mensaje
+  setInterval(() => {
+    socket.emit('toast', { message: `Message: ${i}`});
+    i++;
+  }, 3000);
+  // Recibe un mensaje
+  socket.on('messageToServer', (data) => {
+    console.log('messageReceivedFromClient: ', data.text);
+  });
+});
+
 // App init
-app.listen(appConfig.expressPort, () => {
+server.listen(appConfig.expressPort, () => {
   console.log(`Server is listenning on ${appConfig.expressPort}! (http://localhost:${appConfig.expressPort})`);
 });
