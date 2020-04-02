@@ -21,7 +21,9 @@ app.engine(extNameHbs, hbs.engine);
 app.set('view engine', extNameHbs);
 
 // Receive parameters from the Form requests
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/', express.static(__dirname + '/public'));
 
 // Routes
 app.use('/', webRoutes);
