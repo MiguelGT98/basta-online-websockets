@@ -74,7 +74,7 @@ let playersQueue = {};
 let connections = [];
 let connectionsInQueue = [];
 
-const questions = ["Nombre", "Ciudad", "Animal", "Fruto"];
+const questions = ["Nombre", "Color", "Fruto"];
 const letters = [...Array(26)].map((val, i) => String.fromCharCode(i + 65));
 let letter;
 
@@ -159,6 +159,7 @@ io.on("connection", (socket) => {
 const restartGame = () => {
   gameInProgress = false;
   notificationSent = false;
+  letters.push(letter);
 
   for (let key in players) {
     randomNames.push(players[key].name);
