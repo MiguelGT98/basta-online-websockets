@@ -169,11 +169,17 @@ function showAllAnswers() {
   for (key in players) {
     const newNode = document.createElement("div");
     newNode.classList.toggle("input-group");
+    if (players[key].winner) newNode.classList.toggle("winner");
+
     playersContainer.appendChild(newNode);
 
     const titleNode = document.createElement("div");
     titleNode.classList.toggle("input-group-prepend");
-    titleNode.innerHTML = `<span class="input-group-text">${players[key].name}</span>`;
+    titleNode.innerHTML = `<span class="input-group-text">${
+      players[key].winner
+        ? "🏅 " + players[key].name + " (" + players[key].total + ")"
+        : players[key].name + " (" + players[key].total + ")"
+    }</span>`;
     newNode.appendChild(titleNode);
 
     questions.forEach((question, index) => {

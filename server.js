@@ -146,6 +146,7 @@ io.on("connection", (socket) => {
 
     if (!wait) {
       calculateResults();
+      getWinners();
 
       connections.forEach((socket) => {
         socket.emit("answersReady", players);
@@ -202,7 +203,10 @@ const calculateResults = () => {
 
         question.answers.forEach((otherAnswer, index) => {
           if (answer.player.id === otherAnswer.player.id) {
-          } else if (answer.answer === otherAnswer.answer) repeated++;
+          } else if (
+            answer.answer.toUpperCase() === otherAnswer.answer.toUpperCase()
+          )
+            repeated++;
         });
 
         if (repeated > 1) {
@@ -222,6 +226,23 @@ const calculateResults = () => {
       };
     });
   });
+};
+
+const getWinners = () => {
+  let max = 0;
+  for (let key in players) {
+    players[key].total = players[key].answers.reduce((count, current) => {
+      return count + current.points;
+    }, 0);
+  }
+
+  for (let key in players) {
+    if (max < players[key].total) max = players[key].total;
+  }
+
+  for (let key in players) {
+    if (max === players[key].total) players[key].winner = true;
+  }
 };
 
 const startGame = () => {
