@@ -1,20 +1,37 @@
 <main role="main" class="container">
   <div class="starter-template">
-    <h1>Websockets example</h1>
+    <h1 id="greetings">Ingresa al juego</h1>
   </div>
   <div class="row">
     <div class="col">
-      <button class="btn btn-success" onclick="makeToast();">
-        Show toast!
+      <button class="btn btn-success mt-4 mb-2" onclick="connectToSocketIo();" id="connect">
+        Ingresar al lobby
+      </button>
+    </div>
+  </div>
+  <h2>Lobby</h2>
+  <div class="row">
+    <div id="players" class="col">
+      <p>Lobby está vacío</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success hidden mt-4 mb-2" onclick="emitBasta();" id="stop">
+        Basta
       </button>
     </div>
   </div>
   <div class="row">
     <div class="col">
-      <input type="text" id="messageToServer">
-      <button class="btn btn-success" onclick="emitEventToSocketIo();">
-        Message
-      </button>
+      <div class="alert alert-info hidden mt-4 mb-2" id="counter" role="alert">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-success hidden mt-4 mb-2" onclick="connectToSocketIo();" id="reconnect">
+        Jugar de nuevo </button>
     </div>
   </div>
 </main>

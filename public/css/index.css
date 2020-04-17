@@ -1,0 +1,21 @@
+.hidden {
+  display: none !important;
+}
+
+.input-group:first-of-type {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.input-group {
+  margin-bottom: 0.5rem;
+}
+
+.input-group-text {
+  min-width: 300px;
+}
+
+#stop {
+  min-width: 300px;
+  margin-top: 1rem;
+}
