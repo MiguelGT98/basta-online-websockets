@@ -16,6 +16,6 @@
     "handlebars-helpers": "^0.10.0",
     "knex": "^0.20.11",
     "mysql2": "^2.1.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.5.0"
   }
 }
